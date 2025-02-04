@@ -1,0 +1,20 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.ecommerce.usermanagement;
+
+import java.time.LocalDate;
+
+/**
+ *
+ * @author The Bright
+ */
+public class Sellers extends User {
+    
+    public Sellers(String userID, String userName, String password_hash, String fullname, LocalDate dateOfBirth, String email) {
+        super(userID, userName, password_hash, fullname, dateOfBirth, email);
+    }
+    
+}

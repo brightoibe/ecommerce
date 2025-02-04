@@ -5,8 +5,16 @@
  */
 package com.ecommerce.services;
 
+import com.ecommerce.usermanagement.Admin;
+import com.ecommerce.usermanagement.Customer;
+import com.ecommerce.usermanagement.Sellers;
 import com.ecommerce.usermanagement.User;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 /**
@@ -14,6 +22,10 @@ import java.util.List;
  * @author The Bright
  */
 public class UserService {
+    
+    private static List<User> registeredUserList;
+    
+    private static UserService userServiceInstance;
 
     /**
      * @return the registeredUserList
@@ -29,9 +41,7 @@ public class UserService {
         registeredUserList = aRegisteredUserList;
     }
     
-    private static List<User> registeredUserList;
     
-    private static UserService userServiceInstance;
     
     /*Made the constructor private so a UserService cannot be instanciated from outside
     the class.
@@ -50,5 +60,47 @@ public class UserService {
         }
         return userServiceInstance;
     }
+    public static String hashPassword(String password) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hashedPassword = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+            return Base64.getEncoder().encodeToString(hashedPassword); // Or convert to hex if you prefer
+        } catch (NoSuchAlgorithmException e) {
+            // Handle the exception (e.g., log it, throw a custom exception)
+            System.err.println("SHA-256 algorithm not available.");
+            return null; // Or throw an exception
+        }
+    }
+    public static boolean checkPassword(String password, String storedHash) {
+        String hashedPassword = hashPassword(password);
+        return hashedPassword != null && hashedPassword.equals(storedHash);
+    }
+    public static User registerUser(String userID, String userName, String password, String fullname, LocalDate dateOfBirth, String email, String role){
+        User user=null;
+        if(role.equalsIgnoreCase("ADMIN")){
+            user=createAdmin(userID, userName, hashPassword(password), fullname, dateOfBirth, email);
+        }else if(role.equalsIgnoreCase("CUSTOMER")){
+            user=createCustomer(userID, userName, hashPassword(password), fullname, dateOfBirth, email);
+        }else if(role.equals("SELLER")){
+            user=createSeller(userID, userName, hashPassword(password), fullname, dateOfBirth, email);
+        }
+        return user;
+    }
+    
+    private static User createCustomer(String userID,String userName, String password, String fullname, LocalDate dateOfBirth, String email){
+        return new Customer(userID, userName, hashPassword(password), fullname, dateOfBirth, email);
+        
+    }
+    private static User createAdmin(String userID,String userName, String password, String fullname, LocalDate dateOfBirth, String email){
+        return new Admin(userID, userName,hashPassword(password),fullname,dateOfBirth,email);
+    }
+    private static User createSeller(String userID,String userName, String password, String fullname, LocalDate dateOfBirth, String email){
+        return new Sellers(userID, userName, hashPassword(password), fullname, dateOfBirth, email);
+    }
+    
+    
+    
+    
+   
     
 }

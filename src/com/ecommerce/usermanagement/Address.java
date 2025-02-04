@@ -5,6 +5,8 @@
  */
 package com.ecommerce.usermanagement;
 
+import java.util.Objects;
+
 /**
  *
  * @author The Bright
@@ -94,6 +96,24 @@ public class Address {
     public void setStreet(String street) {
         this.street = street;
     }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Address other = (Address) obj;
+        return Objects.equals(addressID, other.addressID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(addressID);
+    }
+    
     private String addressID;
     private User user;
     private String addressType;

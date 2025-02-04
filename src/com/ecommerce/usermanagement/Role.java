@@ -5,6 +5,8 @@
  */
 package com.ecommerce.usermanagement;
 
+import java.util.Objects;
+
 /**
  *
  * @author The Bright
@@ -40,4 +42,21 @@ public class Role {
     }
     private String roleID;
     private String roleName;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Role other = (Role) obj;
+        return Objects.equals(roleID, other.roleID); // Compare based on roleID
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(roleID); // Hash based on roleID (consistent with equals())
+    }
+    
 }

@@ -6,13 +6,43 @@
 package com.ecommerce.usermanagement;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
  * @author The Bright
  */
 public abstract class User {
+
+    /**
+     * @return the roleList
+     */
+    public List<Role> getRoleList() {
+        return roleList;
+    }
+
+    /**
+     * @param roleList the roleList to set
+     */
+    public void setRoleList(List<Role> roleList) {
+        this.roleList = roleList;
+    }
+
+    /**
+     * @return the addressList
+     */
+    public List<Address> getAddressList() {
+        return addressList;
+    }
+
+    /**
+     * @param addressList the addressList to set
+     */
+    public void setAddressList(List<Address> addressList) {
+        this.addressList = addressList;
+    }
     protected String userID;
     private String userName;
     protected String password_hash;
@@ -21,11 +51,19 @@ public abstract class User {
     protected LocalDate dateOfBirth;
     protected String email;
     protected UserState userState;
-    protected List<Role> roleList;
-    protected List<Address> addressList;
+    private List<Role> roleList;
+    private List<Address> addressList;
     
-    public User(String userID,String username, String pass, String fullname, LocalDate dateOfBirth, String email){
+    public User(String userID,String userName, String password_hash, String fullname, LocalDate dateOfBirth, String email){
         this.userID=userID;
+        this.userName=userName;
+        this.password_hash=password_hash;
+        this.fullName=fullname;
+        this.dateOfBirth=dateOfBirth;
+        this.email=email;
+        roleList=new ArrayList<Role>();
+        addressList=new ArrayList<Address>();
+        
         
     }
     
@@ -131,6 +169,53 @@ public abstract class User {
      */
     public void setUserState(UserState userState) {
         this.userState = userState;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        User other = (User) obj;
+
+        // Case-insensitive comparison for username, email, or userID
+        return (this.userName != null && this.userName.equalsIgnoreCase(other.userName)) ||
+               (email != null && email.equalsIgnoreCase(other.email)) ||
+               (userID != null && userID.equalsIgnoreCase(other.userID));
+    }
+     @Override
+    public int hashCode() {
+        // Important: If you override equals(), you MUST override hashCode()
+        // A simple implementation is usually sufficient:
+        //int hash=0;
+        //if(em !=)
+        return Objects.hash(userName != null ? userName.toLowerCase() : null,
+                           email != null ? email.toLowerCase() : null,
+                           userID != null ? userID.toLowerCase() : null);
+
+
+        // Or a slightly more robust but slightly more complex version (prime number usage):
+        // int result = 17;
+        // result = 31 * result + (username == null ? 0 : username.toLowerCase().hashCode());
+        // result = 31 * result + (email == null ? 0 : email.toLowerCase().hashCode());
+        // result = 31 * result + (userID == null ? 0 : userID.toLowerCase().hashCode());
+        // return result;
+    }
+    
+    public void addRole(Role role){
+        this.getRoleList().add(role);
+    }
+    public void removeRole(Role role){
+        this.getRoleList().remove(role);
+    }
+    public void addAddress(Address address){
+        this.getAddressList().add(address);
+    }
+    public void removeAddress(Address address){
+        this.getAddressList().remove(address);
     }
     
     
