@@ -12,6 +12,14 @@ import java.util.Objects;
  * @author The Bright
  */
 public class Role {
+    
+    private String roleID;
+    private String roleName;
+    
+    public Role(String roleID, String roleName){
+        this.roleID=roleID;
+        this.roleName=roleName;
+    }
 
     /**
      * @return the roleID
@@ -40,8 +48,7 @@ public class Role {
     public void setRoleName(String roleName) {
         this.roleName = roleName;
     }
-    private String roleID;
-    private String roleName;
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

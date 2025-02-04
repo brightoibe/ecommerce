@@ -7,6 +7,7 @@ package com.ecommerce.services;
 
 import com.ecommerce.usermanagement.Admin;
 import com.ecommerce.usermanagement.Customer;
+import com.ecommerce.usermanagement.Role;
 import com.ecommerce.usermanagement.Sellers;
 import com.ecommerce.usermanagement.User;
 import com.ecommerce.usermanagement.UserState;
@@ -78,16 +79,24 @@ public class UserService {
     }
     public static User registerUser(String userID, String userName, String password, String fullname, LocalDate dateOfBirth, String email, String role){
         User user=null;
+        Role userRole=null;
         if(role.equalsIgnoreCase("ADMIN")){
             user=createAdmin(userID, userName, hashPassword(password), fullname, dateOfBirth, email);
+            userRole=new Role(role,role);
+            user.addRole(userRole);
         }else if(role.equalsIgnoreCase("CUSTOMER")){
             user=createCustomer(userID, userName, hashPassword(password), fullname, dateOfBirth, email);
+            userRole=new Role(role,role);
+            user.addRole(userRole);
         }else if(role.equals("SELLER")){
             user=createSeller(userID, userName, hashPassword(password), fullname, dateOfBirth, email);
+            userRole=new Role(role,role);
+            user.addRole(userRole);
         }
         if(user!=null){
             user.setUserState(UserState.ACTIVE);
             registeredUserList.add(user);
+            log("User registered "+user);
         }
         
         
