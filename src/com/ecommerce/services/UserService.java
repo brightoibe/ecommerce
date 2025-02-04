@@ -6,6 +6,7 @@
 package com.ecommerce.services;
 
 import com.ecommerce.usermanagement.Admin;
+import com.ecommerce.usermanagement.AuthenticationException;
 import com.ecommerce.usermanagement.Customer;
 import com.ecommerce.usermanagement.Role;
 import com.ecommerce.usermanagement.Sellers;
@@ -98,8 +99,6 @@ public class UserService {
             registeredUserList.add(user);
             log("User registered "+user);
         }
-        
-        
         return user;
     }
     
@@ -113,12 +112,13 @@ public class UserService {
     public static User createSeller(String userID,String userName, String password, String fullname, LocalDate dateOfBirth, String email){
         return new Sellers(userID, userName, hashPassword(password), fullname, dateOfBirth, email);
     }
-    public static User login(String username,String password) throws AuthenticationException{
+    public static User loginUser(String username,String password) throws AuthenticationException{
         User searchUser=null;
         for(User user: registeredUserList){
             if(username.equalsIgnoreCase(user.getUserName()) && checkPassword(password, user.getPassword_hash())){
                 searchUser=user;
                 log("Login successfull for "+username);
+                searchUser.setLoggedIn(true);
             }
         }
         if(searchUser==null){
@@ -126,6 +126,21 @@ public class UserService {
             
         }
         return searchUser;
+    }
+    public static void logoutUser(User user){
+        user.setLoggedIn(false);
+        log("User logged out successfully "+user);
+    }
+    
+    public static void resetPassword(User user, String newPassword){
+        String newhash_password="";
+        if(user.isLoggedIn()){
+            newhash_password=hashPassword(newPassword);
+            user.setPassword_hash(newhash_password);
+            log("Password rest successfully please check your email "+ user);
+        }else{
+            log("User session has expired please login "+user);
+        }
     }
     
     public static void log(String message){
@@ -142,11 +157,7 @@ public class UserService {
         return searchUser;
     }
     
-    public static class AuthenticationException extends Exception{
-        public AuthenticationException(String message){
-            super(message);
-        }
-    }
+    
     
     
     

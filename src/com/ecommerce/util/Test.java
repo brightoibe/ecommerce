@@ -7,6 +7,7 @@ package com.ecommerce.util;
 
 import com.ecommerce.services.UserService;
 import static com.ecommerce.services.UserService.checkPassword;
+import com.ecommerce.usermanagement.AuthenticationException;
 import com.ecommerce.usermanagement.User;
 import java.time.LocalDate;
 import java.util.logging.Level;
@@ -22,12 +23,14 @@ public class Test {
        //User user1=userService.registerUser("101", "brightoibe3", "123456", "Bright Ibezim", LocalDate.now(), "brightoibe@yahoo.com", "ADMIN");
        //User user2=userService.registerUser("101", "brightoibe", "67890", "Don Pedro", LocalDate.now(), "donpedro@yahoo.com", "CUSTOMER");
        User user2=userService.registerUser("102", "brightoibe", "123456", "Bright Ibezim", LocalDate.now(), "brightoibe@yahoo.com", "ADMIN");
-       System.out.println(checkPassword(UserService.hashPassword("123456"), user2.getPassword_hash()));
+       UserService.resetPassword(user2, "333333");
+       //System.out.println(checkPassword(UserService.hashPassword("123456"), user2.getPassword_hash()));
         try {
-            System.out.println(UserService.login("brightoibe", "123456"));
+            System.out.println(UserService.loginUser("brightoibe", "123456"));
+            UserService.resetPassword(user2, "333333");
             //checkPassword(UserService.hashPassword("123456"), user2.getPassword_hash());
-        } catch (UserService.AuthenticationException ex) {
-            //Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (AuthenticationException ex) {
+            UserService.log(ex.getMessage());
         }
        
     }
