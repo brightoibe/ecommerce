@@ -9,6 +9,7 @@ import com.ecommerce.usermanagement.Admin;
 import com.ecommerce.usermanagement.Customer;
 import com.ecommerce.usermanagement.Sellers;
 import com.ecommerce.usermanagement.User;
+import com.ecommerce.usermanagement.UserState;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -84,18 +85,54 @@ public class UserService {
         }else if(role.equals("SELLER")){
             user=createSeller(userID, userName, hashPassword(password), fullname, dateOfBirth, email);
         }
+        if(user!=null){
+            user.setUserState(UserState.ACTIVE);
+            registeredUserList.add(user);
+        }
+        
+        
         return user;
     }
     
-    private static User createCustomer(String userID,String userName, String password, String fullname, LocalDate dateOfBirth, String email){
+    public static User createCustomer(String userID,String userName, String password, String fullname, LocalDate dateOfBirth, String email){
         return new Customer(userID, userName, hashPassword(password), fullname, dateOfBirth, email);
         
     }
-    private static User createAdmin(String userID,String userName, String password, String fullname, LocalDate dateOfBirth, String email){
+    public static User createAdmin(String userID,String userName, String password, String fullname, LocalDate dateOfBirth, String email){
         return new Admin(userID, userName,hashPassword(password),fullname,dateOfBirth,email);
     }
-    private static User createSeller(String userID,String userName, String password, String fullname, LocalDate dateOfBirth, String email){
+    public static User createSeller(String userID,String userName, String password, String fullname, LocalDate dateOfBirth, String email){
         return new Sellers(userID, userName, hashPassword(password), fullname, dateOfBirth, email);
+    }
+    public static User login(String username,String password) throws AuthenticationException{
+        User searchUser=null;
+        for(User user: registeredUserList){
+            if(username.equalsIgnoreCase(user.getUserName()) && checkPassword(password, user.getPassword_hash())){
+                searchUser=user;
+            }
+        }
+        if(searchUser==null){
+            throw new AuthenticationException("Invalid username or password");
+        }
+        return searchUser;
+    }
+    
+    
+    public static User findUser(String username){
+        User searchUser=null;
+        
+        for(User user: registeredUserList){
+            if(username.equalsIgnoreCase(user.getUserName())){
+                searchUser=user;
+            }
+        }
+        return searchUser;
+    }
+    
+    private static class AuthenticationException extends Exception{
+        public AuthenticationException(String message){
+            super(message);
+        }
     }
     
     

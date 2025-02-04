@@ -17,6 +17,34 @@ import java.util.Objects;
 public abstract class User {
 
     /**
+     * @return the loggedIn
+     */
+    public boolean isLoggedIn() {
+        return loggedIn;
+    }
+
+    /**
+     * @param loggedIn the loggedIn to set
+     */
+    public void setLoggedIn(boolean loggedIn) {
+        this.loggedIn = loggedIn;
+    }
+
+    /**
+     * @return the userName
+     */
+    public String getUserName() {
+        return userName;
+    }
+
+    /**
+     * @param userName the userName to set
+     */
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    /**
      * @return the roleList
      */
     public List<Role> getRoleList() {
@@ -51,8 +79,9 @@ public abstract class User {
     protected LocalDate dateOfBirth;
     protected String email;
     protected UserState userState;
-    private List<Role> roleList;
-    private List<Address> addressList;
+    protected List<Role> roleList;
+    protected List<Address> addressList;
+    private boolean loggedIn=false;
     
     public User(String userID,String userName, String password_hash, String fullname, LocalDate dateOfBirth, String email){
         this.userID=userID;
@@ -182,7 +211,7 @@ public abstract class User {
         User other = (User) obj;
 
         // Case-insensitive comparison for username, email, or userID
-        return (this.userName != null && this.userName.equalsIgnoreCase(other.userName)) ||
+        return (this.getUserName() != null && this.getUserName().equalsIgnoreCase(other.getUserName())) ||
                (email != null && email.equalsIgnoreCase(other.email)) ||
                (userID != null && userID.equalsIgnoreCase(other.userID));
     }
@@ -192,7 +221,7 @@ public abstract class User {
         // A simple implementation is usually sufficient:
         //int hash=0;
         //if(em !=)
-        return Objects.hash(userName != null ? userName.toLowerCase() : null,
+        return Objects.hash(getUserName() != null ? getUserName().toLowerCase() : null,
                            email != null ? email.toLowerCase() : null,
                            userID != null ? userID.toLowerCase() : null);
 
