@@ -72,7 +72,7 @@ public abstract class User {
         this.addressList = addressList;
     }
     protected String userID;
-    private String userName;
+    protected String userName;
     protected String password_hash;
     protected String fullName;
     protected String gender;
@@ -81,7 +81,7 @@ public abstract class User {
     protected UserState userState;
     protected List<Role> roleList;
     protected List<Address> addressList;
-    private boolean loggedIn=false;
+    protected boolean loggedIn=false;
     
     public User(String userID,String userName, String password_hash, String fullname, LocalDate dateOfBirth, String email){
         this.userID=userID;

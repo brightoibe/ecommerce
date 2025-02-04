@@ -82,20 +82,21 @@ public class UserService {
         User user=null;
         Role userRole=null;
         if(role.equalsIgnoreCase("ADMIN")){
-            user=createAdmin(userID, userName, hashPassword(password), fullname, dateOfBirth, email);
+            user=createAdmin(userID, userName, password, fullname, dateOfBirth, email);
             userRole=new Role(role,role);
             user.addRole(userRole);
         }else if(role.equalsIgnoreCase("CUSTOMER")){
-            user=createCustomer(userID, userName, hashPassword(password), fullname, dateOfBirth, email);
+            user=createCustomer(userID, userName, password, fullname, dateOfBirth, email);
             userRole=new Role(role,role);
             user.addRole(userRole);
         }else if(role.equals("SELLER")){
-            user=createSeller(userID, userName, hashPassword(password), fullname, dateOfBirth, email);
+            user=createSeller(userID, userName, password, fullname, dateOfBirth, email);
             userRole=new Role(role,role);
             user.addRole(userRole);
         }
         if(user!=null){
             user.setUserState(UserState.ACTIVE);
+            //user.setLoggedIn(true);
             registeredUserList.add(user);
             log("User registered "+user);
         }
@@ -119,6 +120,7 @@ public class UserService {
                 searchUser=user;
                 log("Login successfull for "+username);
                 searchUser.setLoggedIn(true);
+                return searchUser;
             }
         }
         if(searchUser==null){
