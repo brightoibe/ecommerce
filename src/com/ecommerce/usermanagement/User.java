@@ -247,5 +247,10 @@ public abstract class User {
         this.getAddressList().remove(address);
     }
     
+    @Override
+    public String toString() {
+        return userName + ": " + fullName;
+    }
+    
     
 }

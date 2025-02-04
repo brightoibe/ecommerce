@@ -109,15 +109,18 @@ public class UserService {
         for(User user: registeredUserList){
             if(username.equalsIgnoreCase(user.getUserName()) && checkPassword(password, user.getPassword_hash())){
                 searchUser=user;
+                log("Login successfull for "+username);
             }
         }
         if(searchUser==null){
-            throw new AuthenticationException("Invalid username or password");
+            throw new AuthenticationException("Invalid username or password "+username);
         }
         return searchUser;
     }
     
-    
+    public static void log(String message){
+        System.out.println(message);
+    }
     public static User findUser(String username){
         User searchUser=null;
         
@@ -129,7 +132,7 @@ public class UserService {
         return searchUser;
     }
     
-    private static class AuthenticationException extends Exception{
+    public static class AuthenticationException extends Exception{
         public AuthenticationException(String message){
             super(message);
         }
