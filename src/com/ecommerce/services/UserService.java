@@ -123,6 +123,7 @@ public class UserService {
         }
         if(searchUser==null){
             throw new AuthenticationException("Invalid username or password "+username);
+            
         }
         return searchUser;
     }
