@@ -6,18 +6,25 @@
 package com.ecommerce.usermanagement;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  *
  * @author The Bright
  */
-public class User {
-    private String userID;
-    private String password_hash;
-    private String fullName;
-    private String gender;
-    private LocalDate dateOfBirth;
-    private String email;
+public abstract class User {
+    protected String userID;
+    protected String password_hash;
+    protected String fullName;
+    protected String gender;
+    protected LocalDate dateOfBirth;
+    protected String email;
+    protected UserState userState;
+    protected List<Role> roleList;
+    protected List<Address> addressList;
+    
+    
+    
     
 
     /**
@@ -102,6 +109,20 @@ public class User {
      */
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    /**
+     * @return the userState
+     */
+    public UserState getUserState() {
+        return userState;
+    }
+
+    /**
+     * @param userState the userState to set
+     */
+    public void setUserState(UserState userState) {
+        this.userState = userState;
     }
     
     
