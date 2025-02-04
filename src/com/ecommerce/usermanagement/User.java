@@ -14,6 +14,7 @@ import java.util.List;
  */
 public abstract class User {
     protected String userID;
+    private String userName;
     protected String password_hash;
     protected String fullName;
     protected String gender;
@@ -23,7 +24,14 @@ public abstract class User {
     protected List<Role> roleList;
     protected List<Address> addressList;
     
+    public User(String userID,String username, String pass, String fullname, LocalDate dateOfBirth, String email){
+        this.userID=userID;
+        
+    }
     
+    public User(String userID,String username, String pass, String fullname){
+        this(userID,username,pass,fullname, null,null);
+    }
     
     
 
