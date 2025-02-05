@@ -5,10 +5,13 @@
  */
 package com.ecommerce.products;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -159,6 +162,32 @@ public class Product {
         this.discounts = discount;
     }
     
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return productID.equalsIgnoreCase(product.productID); // Case-insensitive comparison
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productID.toLowerCase()); // Consistent with equals (case-insensitive)
+    }
+    @Override
+    public String toString() {
+        // Format price with dollar sign based on locale
+        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.US); // You can use a different locale if needed
+        String formattedPrice = currencyFormat.format(productPrice); // Format the price
+
+       /* If using BigDecimal for price:
+         NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.US); // You can use a different locale if needed
+         String formattedPrice = currencyFormat.format(this.productPrice); // Format the price
+        */
+
+
+        return String.format("%s | %s | %s", productID, productName, formattedPrice);
+    }
     
     
 }

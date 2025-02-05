@@ -5,10 +5,16 @@
  */
 package com.ecommerce.products;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author The Bright
  */
 public class Discount {
-    
+    private String discountId;
+    private String discountName;
+    private double percentage;
+    private LocalDate startDate;
+    private LocalDate endDate;
 }
