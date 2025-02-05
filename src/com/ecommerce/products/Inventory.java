@@ -17,6 +17,13 @@ public class Inventory {
     private Product product;
     private int stockCount;
     private LocalDate restockDate;
+    
+    public Inventory(String inventoryID, Product product, int stockCount, LocalDate restockDate){
+        this.inventoryID=inventoryID;
+        this.product=product;
+        this.stockCount=stockCount;
+        this.restockDate=restockDate;
+    }
 
     /**
      * @return the inventoryID

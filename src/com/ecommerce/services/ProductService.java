@@ -21,6 +21,10 @@ public class ProductService {
         productList=new ArrayList<Product>();
     }
     
+    private void restockProductInventory(){
+        
+    }
+    
     
     
     
