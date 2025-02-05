@@ -6,7 +6,10 @@
 package com.ecommerce.products;
 
 import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -17,7 +20,7 @@ public class Product {
     
     protected String productID;
     protected String productName;
-    protected String productCategory;
+    protected Set<Category> productCategorys;
     protected double productPrice;
     protected String description;
     protected List<Review> reviews;
@@ -25,10 +28,10 @@ public class Product {
     protected List<Discount> discounts;
     
     
-    public Product(String productID, String productName, String productCategory, double productPrice){
+    public Product(String productID, String productName, double productPrice){
         this.productID=productID;
         this.productName=productName;
-        this.productCategory=productCategory;
+        this.productCategorys=new HashSet<Category>();
         this.productPrice=productPrice;
         reviews=new ArrayList<Review>();
         discounts=new ArrayList<Discount>();
@@ -65,17 +68,25 @@ public class Product {
     }
 
     /**
-     * @return the productCategory
+     * @return the productCategorys
      */
-    public String getProductCategory() {
-        return productCategory;
+    public Set<Category> getProductCategory() {
+        return productCategorys;
     }
 
     /**
-     * @param productCategory the productCategory to set
+     * @param productCategory add product to new Category
      */
-    public void setProductCategory(String productCategory) {
-        this.productCategory = productCategory;
+    public void addProductCategory(Category productCategory) {
+        this.productCategorys.add(productCategory);
+    }
+    
+    /**
+     * @param productCategory remove product from Category
+     */
+    
+    public void removeProductCategory(Category productCategory) {
+        this.productCategorys.remove(productCategory);
     }
 
     /**

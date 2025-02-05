@@ -42,8 +42,8 @@ public class DigitalProduct extends Product {
     
     
 
-    public DigitalProduct(String productID, String productName, String productCategory, double productPrice,String licenseKey, String downloadUrl) {
-        super(productID, productName, productCategory, productPrice);
+    public DigitalProduct(String productID, String productName, double productPrice,String licenseKey, String downloadUrl) {
+        super(productID, productName, productPrice);
         this.licenseKey=licenseKey;
         this.downloadUrl=downloadUrl;
     }

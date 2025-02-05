@@ -9,6 +9,6 @@ package com.ecommerce.products;
  *
  * @author The Bright
  */
-public class Category {
+public enum Category {
     
 }

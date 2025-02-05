@@ -43,8 +43,8 @@ public class PhysicalProduct extends Product {
     }
     
     
-    public PhysicalProduct(String productID, String productName, String productCategory, double productPrice, int weight, String color) {
-        super(productID, productName, productCategory, productPrice);
+    public PhysicalProduct(String productID, String productName,double productPrice, int weight, String color) {
+        super(productID, productName,productPrice);
         this.weight=weight;
         this.color=color;
     }
