@@ -11,4 +11,15 @@ package com.ecommerce.products;
  */
 public enum Category {
     
+    ELECTRONICS,
+    CLOTHING,
+    FURNITURE,
+    HOME_GOODS,
+    BOOKS,
+    SPORTS,
+    BEAUTY,
+    TOYS,
+    HEALTH,
+    FASHION
+    
 }
