@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ecommerse.payments;
+package com.ecommerce.payments;
 
 import com.ecommerce.products.Product;
 import com.ecommerce.usermanagement.User;
