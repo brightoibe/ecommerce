@@ -21,13 +21,15 @@ import java.util.Random;
 public class ProductService {
 
     private static List<Product> productList;
-    private static ProductService productServiceInstance;
+    private static final ProductService INSTANCE=new ProductService();
 
     private ProductService() {
         productList = new ArrayList<Product>();
         restockProductInventory();
     }
-
+    public static ProductService getInstance() {
+        return INSTANCE;
+    }
     private void restockProductInventory() {
         productList.clear(); // Clear existing inventory before restocking
         Random random = new Random();
