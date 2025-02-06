@@ -6,6 +6,7 @@
 package com.ecommerce.products;
 
 import java.text.NumberFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.HashSet;
@@ -41,6 +42,20 @@ public class Product {
         
     }
     
+    public Product(String productID, String productName, double productPrice, Inventory inventory){
+        this.productID=productID;
+        this.productName=productName;
+        this.productCategorys=new HashSet<Category>();
+        this.productPrice=productPrice;
+        this.inventory=inventory;
+        reviews=new ArrayList<Review>();
+        discounts=new ArrayList<Discount>();
+    }
+    
+    public void restockInventory(int quantity,LocalDate restockDate){
+        this.inventory.setStockCount(this.inventory.getStockCount()+quantity);
+        this.inventory.setRestockDate(restockDate);
+    }
 
     /**
      * @return the productID
