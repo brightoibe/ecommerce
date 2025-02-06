@@ -14,7 +14,19 @@ import java.util.Objects;
  *
  * @author The Bright
  */
-public abstract class User {
+public class User {
+    
+    protected String userID;
+    protected String userName;
+    protected String password_hash;
+    protected String fullName;
+    protected String gender;
+    protected LocalDate dateOfBirth;
+    protected String email;
+    protected UserState userState;
+    protected List<Role> roleList;
+    protected List<Address> addressList;
+    protected boolean loggedIn=false;
 
     /**
      * @return the loggedIn
@@ -71,17 +83,7 @@ public abstract class User {
     public void setAddressList(List<Address> addressList) {
         this.addressList = addressList;
     }
-    protected String userID;
-    protected String userName;
-    protected String password_hash;
-    protected String fullName;
-    protected String gender;
-    protected LocalDate dateOfBirth;
-    protected String email;
-    protected UserState userState;
-    protected List<Role> roleList;
-    protected List<Address> addressList;
-    protected boolean loggedIn=false;
+    
     
     public User(String userID,String userName, String password_hash, String fullname, LocalDate dateOfBirth, String email){
         this.userID=userID;
