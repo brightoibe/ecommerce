@@ -69,15 +69,23 @@ public class Cart {
     }
     
      public void addToCart(Product product, int quantity){
-        
+        CartItem cartItem=findOrCreateCartItem(product, quantity);
+        cartItem.setQuantity(cartItem.getQuantity()+quantity);
      }
      
      public void removeFromCart(Product product, int quantity){
+         CartItem cartItem=findOrCreateCartItem(product, quantity);
+         if(cartItem.getQuantity()>0 && cartItem.getQuantity()>quantity){
+             cartItem.setQuantity(cartItem.getQuantity()-quantity);
+         }else{
+             return;
+         }
          
      }
      
      private CartItem createCartItem(Product product, int quantity){
          CartItem item=new CartItem("CRTITM"+this.getCartID(),product, quantity);
+         cartItemList.add(item);
          return item;
          
      }
