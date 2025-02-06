@@ -28,7 +28,7 @@ public class UserService {
     
     private static List<User> registeredUserList;
     
-    private static UserService userServiceInstance;
+    private static final UserService userServiceInstance=new UserService();
 
     /**
      * @return the registeredUserList
@@ -58,9 +58,6 @@ public class UserService {
        at a time
     */
     public static UserService getInstance() {
-        if (userServiceInstance == null) {
-            userServiceInstance = new UserService();
-        }
         return userServiceInstance;
     }
     public static String hashPassword(String password) {

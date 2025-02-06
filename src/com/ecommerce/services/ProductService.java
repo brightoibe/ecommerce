@@ -102,6 +102,10 @@ public class ProductService {
         }
     }
     
+    public void showProducts(){
+        showProducts(productList);
+    }
+    
     
 
 }
