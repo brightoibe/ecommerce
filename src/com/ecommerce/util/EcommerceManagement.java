@@ -5,8 +5,10 @@
  */
 package com.ecommerce.util;
 
+import com.ecommerce.payments.Cart;
 import com.ecommerce.products.Category;
 import com.ecommerce.products.Product;
+import com.ecommerce.services.PaymentService;
 import com.ecommerce.services.ProductService;
 import com.ecommerce.services.UserService;
 import com.ecommerce.users.AuthenticationException;
@@ -23,6 +25,7 @@ public class EcommerceManagement {
     public static void main(String[] arg) {
         UserService userService = UserService.getInstance();
         ProductService productService = ProductService.getInstance();
+        PaymentService paymentService=PaymentService.getInstance();
 
         //Registering an ADMIN User
         User adminUser = userService.registerUser("USR101", "johndoe", "123456", "John Doe", LocalDate.now(), "johndoe@yahoo.com", "ADMIN");
@@ -63,6 +66,15 @@ public class EcommerceManagement {
         //Display only SPORTS accessories
         //searchResults=productService.findProducts(Category.SPORTS);
         //productService.showProducts(searchResults);
+        
+        //Add different Products to Cart
+       Cart cart= paymentService.findOrCreateShoppingCart(customerUser);
+       cart.addToCart(productService.getProduct("PRD101"), 2);
+       cart.addToCart(productService.getProduct("PRD111"), 5);
+       cart.addToCart(productService.getProduct("PRD117"), 1);
+       cart.addToCart(productService.getProduct("PRD107"), 3);
+       System.out.println(cart.getTotalPrice());
+       
         
         
         

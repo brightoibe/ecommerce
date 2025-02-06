@@ -95,6 +95,7 @@ public class ProductService {
         }
         return searchProdcuts;
     }
+   
     
     public Product getProduct(String productID){
         Product product=null;
@@ -115,6 +116,10 @@ public class ProductService {
     
     public void showProducts(){
         showProducts(productList);
+    }
+    
+    public void showProducts(Product product){
+        System.out.println(product);
     }
     
     

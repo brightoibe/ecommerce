@@ -71,6 +71,7 @@ public class Cart {
      public void addToCart(Product product, int quantity){
         CartItem cartItem=findOrCreateCartItem(product, quantity);
         cartItem.setQuantity(cartItem.getQuantity()+quantity);
+        System.out.println("Cart Item added: "+cartItem);
      }
      
      public void removeFromCart(Product product, int quantity){

@@ -12,16 +12,17 @@ import com.ecommerce.products.Product;
  * @author The Bright
  */
 public class CartItem {
-    
+
     private String cartItemID;
     private Product product;
     private int quantity;
-   
-    public CartItem (String cartItemID, Product product, int quantity){
-        this.cartItemID=cartItemID;
-        this.product=product;
-        this.quantity=quantity;
+
+    public CartItem(String cartItemID, Product product, int quantity) {
+        this.cartItemID = cartItemID;
+        this.product = product;
+        this.quantity = quantity;
     }
+
     /**
      * @return the cartItemID
      */
@@ -63,5 +64,10 @@ public class CartItem {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-    
+
+    @Override
+    public String toString() {
+        return product.getProductName() + ":" + product.getProductPrice() + ":" + quantity;
+    }
+
 }
