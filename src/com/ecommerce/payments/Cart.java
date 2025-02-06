@@ -102,6 +102,16 @@ public class Cart {
          return cartItem;
      }
      
+     public double getTotalPrice(){
+         double totalPrice=0;
+         double productTotalPrice=0;
+         for(CartItem item: cartItemList){
+             productTotalPrice=item.getProduct().getProductPrice()*item.getQuantity();
+             totalPrice+=productTotalPrice;
+         }
+         return totalPrice;
+     }
+     
     
     
     

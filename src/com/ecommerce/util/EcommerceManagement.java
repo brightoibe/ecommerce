@@ -56,13 +56,15 @@ public class EcommerceManagement {
         }
         
         //Display all products in the Ecommerce shop
-        //productService.showProducts();
+        productService.showProducts();
         
         List<Product> searchResults;
         
         //Display only SPORTS accessories
-        searchResults=productService.findProducts(Category.SPORTS);
-        productService.showProducts(searchResults);
+        //searchResults=productService.findProducts(Category.SPORTS);
+        //productService.showProducts(searchResults);
+        
+        
         
         
         
