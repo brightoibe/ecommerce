@@ -68,9 +68,34 @@ public class Cart {
         this.cartItemList = productList;
     }
     
-    public void addToCart(Product product, int quantity){
+     public void addToCart(Product product, int quantity){
         
-    }
+     }
+     
+     public void removeFromCart(Product product, int quantity){
+         
+     }
+     
+     private CartItem createCartItem(Product product, int quantity){
+         CartItem item=new CartItem("CRTITM"+this.getCartID(),product, quantity);
+         return item;
+         
+     }
+     public CartItem findOrCreateCartItem(Product product, int quantity){
+         CartItem cartItem=null;
+         for(CartItem item: cartItemList){
+             if(item.getProduct().equals(product)){
+                 cartItem=item;
+             }
+         }
+         if(cartItem==null){
+             cartItem=createCartItem(product, quantity);
+         }
+         return cartItem;
+     }
+     
+    
+    
     
     
     

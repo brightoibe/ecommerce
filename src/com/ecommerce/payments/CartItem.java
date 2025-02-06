@@ -16,7 +16,12 @@ public class CartItem {
     private String cartItemID;
     private Product product;
     private int quantity;
-
+   
+    public CartItem (String cartItemID, Product product, int quantity){
+        this.cartItemID=cartItemID;
+        this.product=product;
+        this.quantity=quantity;
+    }
     /**
      * @return the cartItemID
      */
