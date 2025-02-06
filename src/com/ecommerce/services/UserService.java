@@ -5,13 +5,13 @@
  */
 package com.ecommerce.services;
 
-import com.ecommerce.usermanagement.Admin;
-import com.ecommerce.usermanagement.AuthenticationException;
-import com.ecommerce.usermanagement.Customer;
-import com.ecommerce.usermanagement.Role;
-import com.ecommerce.usermanagement.Sellers;
-import com.ecommerce.usermanagement.User;
-import com.ecommerce.usermanagement.UserState;
+import com.ecommerce.users.Admin;
+import com.ecommerce.users.AuthenticationException;
+import com.ecommerce.users.Customer;
+import com.ecommerce.users.Role;
+import com.ecommerce.users.Sellers;
+import com.ecommerce.users.User;
+import com.ecommerce.users.UserState;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

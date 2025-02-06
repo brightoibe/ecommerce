@@ -5,7 +5,7 @@
  */
 package com.ecommerce.products;
 
-import com.ecommerce.usermanagement.User;
+import com.ecommerce.users.User;
 
 /**
  *

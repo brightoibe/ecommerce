@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ecommerce.usermanagement;
+package com.ecommerce.users;
 
 import java.time.LocalDate;
 
@@ -11,9 +11,9 @@ import java.time.LocalDate;
  *
  * @author The Bright
  */
-public class Sellers extends User {
+public class Admin extends User {
     
-    public Sellers(String userID, String userName, String password_hash, String fullname, LocalDate dateOfBirth, String email) {
+    public Admin(String userID, String userName, String password_hash, String fullname, LocalDate dateOfBirth, String email) {
         super(userID, userName, password_hash, fullname, dateOfBirth, email);
     }
     

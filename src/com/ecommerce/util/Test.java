@@ -7,8 +7,8 @@ package com.ecommerce.util;
 
 import com.ecommerce.services.UserService;
 import static com.ecommerce.services.UserService.checkPassword;
-import com.ecommerce.usermanagement.AuthenticationException;
-import com.ecommerce.usermanagement.User;
+import com.ecommerce.users.AuthenticationException;
+import com.ecommerce.users.User;
 import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;

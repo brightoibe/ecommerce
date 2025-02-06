@@ -6,7 +6,7 @@
 package com.ecommerce.payments;
 
 import com.ecommerce.products.Product;
-import com.ecommerce.usermanagement.User;
+import com.ecommerce.users.User;
 import java.util.List;
 
 /**

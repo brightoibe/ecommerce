@@ -5,7 +5,7 @@
  */
 package com.ecommerce.payments;
 
-import com.ecommerce.usermanagement.User;
+import com.ecommerce.users.User;
 import java.util.ArrayList;
 import java.util.List;
 
