@@ -20,6 +20,19 @@ public enum Category {
     BEAUTY,
     TOYS,
     HEALTH,
-    FASHION
+    FASHION,
+    ACCESSORIES,
+    AUDIO,
+    WEARABLES,
+    OFFICE_SUPPLIES,
+    NETWORKING,
+    STORAGE,
+    GAMING,
+    ART_SUPPLIES,
+    HOME_APPLIANCES,
+    GADGETS,
+    SMART_HOME,
+    HOME_SECURITY,
+    TRANSPORT
     
 }

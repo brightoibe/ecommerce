@@ -30,6 +30,7 @@ public class Product {
     protected List<Review> reviews;
     protected Inventory inventory;
     protected List<Discount> discounts;
+    protected final static int DEFAULT_STOCK_COUNT=0;
     
     
     public Product(String productID, String productName, double productPrice){
@@ -39,6 +40,18 @@ public class Product {
         this.productPrice=productPrice;
         reviews=new ArrayList<Review>();
         discounts=new ArrayList<Discount>();
+        inventory=new Inventory("INV"+productID, this,DEFAULT_STOCK_COUNT,null);
+        
+    }
+    public Product(String productID, String productName, double productPrice,List<Category> categories){
+        this.productID=productID;
+        this.productName=productName;
+        this.productCategorys=new HashSet<Category>();
+        this.productPrice=productPrice;
+        reviews=new ArrayList<Review>();
+        discounts=new ArrayList<Discount>();
+        inventory=new Inventory("INV"+productID, this,DEFAULT_STOCK_COUNT,null);
+        this.productCategorys.addAll(categories);
         
     }
     
