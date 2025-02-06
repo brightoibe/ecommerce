@@ -64,6 +64,6 @@ public class PhysicalProduct extends Product {
         */
 
 
-        return String.format("%s | %s | %s", productID, productName, formattedPrice, weight, color);
+        return String.format("%s | %s | %s | %s | %s", productID, productName, formattedPrice, weight, color);
     }
 }

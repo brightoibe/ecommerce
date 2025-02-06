@@ -63,7 +63,7 @@ public class DigitalProduct extends Product {
         */
 
 
-        return String.format("%s | %s | %s", productID, productName, formattedPrice,licenseKey,downloadUrl);
+        return String.format("%s | %s | %s | %s | %s", productID, productName, formattedPrice,licenseKey,downloadUrl);
     }
 
    
