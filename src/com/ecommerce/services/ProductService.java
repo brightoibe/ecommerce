@@ -96,6 +96,17 @@ public class ProductService {
         return searchProdcuts;
     }
     
+    public Product getProduct(String productID){
+        Product product=null;
+        for(Product prd: productList){
+            if(prd.getProductID().equalsIgnoreCase(productID)){
+                product=prd;
+            }
+        }
+        return product;
+        
+    }
+    
     public void showProducts(List<Product> productList){
         for(Product prd: productList){
             System.out.println(prd);
