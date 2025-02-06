@@ -5,6 +5,8 @@
  */
 package com.ecommerce.products;
 
+import java.util.List;
+
 /**
  *
  * @author The Bright
@@ -12,6 +14,13 @@ package com.ecommerce.products;
 public class DigitalProduct extends Product {
     private String licenseKey;
     private String downloadUrl;
+    
+     public DigitalProduct(String productID, String productName, double productPrice,List<Category> categoryList, String licenseKey, String downloadUrl) {
+        super(productID, productName, productPrice,categoryList);
+        this.licenseKey=licenseKey;
+        this.downloadUrl=downloadUrl;
+    }
+    
     /**
      * @return the licenseKey
      */
@@ -42,12 +51,7 @@ public class DigitalProduct extends Product {
     
     
 
-    public DigitalProduct(String productID, String productName, double productPrice,String licenseKey, String downloadUrl) {
-        super(productID, productName, productPrice);
-        this.licenseKey=licenseKey;
-        this.downloadUrl=downloadUrl;
-    }
-    
+   
     
     
 }

@@ -6,7 +6,8 @@
 package com.ecommerce.services;
 
 import com.ecommerce.products.Category;
-import com.ecommerce.products.Inventory;
+import com.ecommerce.products.DigitalProduct;
+import com.ecommerce.products.PhysicalProduct;
 import com.ecommerce.products.Product;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -34,37 +35,39 @@ public class ProductService {
         productList.clear(); // Clear existing inventory before restocking
         Random random = new Random();
 
-        // List of products with user-friendly IDs
-        Product product1 = new Product("PRD101", "Dell XPS 13", 1200.00, Arrays.asList(Category.ELECTRONICS));
-        Product product2 = new Product("PRD102", "Samsung Galaxy S23", 999.99, Arrays.asList(Category.ELECTRONICS));
-        Product product3 = new Product("PRD103", "Sony WH-1000XM5", 349.99, Arrays.asList(Category.ELECTRONICS));
-        Product product4 = new Product("PRD104", "Clean Code", 39.99, Arrays.asList(Category.BOOKS));
-        Product product5 = new Product("PRD105", "Nike Sportswear T-Shirt", 29.99, Arrays.asList(Category.CLOTHING));
-        Product product6 = new Product("PRD106", "Wireless Mouse", 30.0, Arrays.asList(Category.ELECTRONICS, Category.ACCESSORIES));
-        Product product7 = new Product("PRD107", "Sony Headphones", 80.0, Arrays.asList(Category.ELECTRONICS, Category.AUDIO));
-        Product product8 = new Product("PRD108", "Apple Smartwatch", 200.0, Arrays.asList(Category.ELECTRONICS, Category.WEARABLES));
-        Product product9 = new Product("PRD109", "HP Laser Printer", 180.0, Arrays.asList(Category.ELECTRONICS, Category.OFFICE_SUPPLIES));
-        Product product10 = new Product("PRD110", "TP-Link Router", 100.0, Arrays.asList(Category.ELECTRONICS, Category.NETWORKING));
-        Product product11 = new Product("PRD111", "Seagate External Hard Drive", 120.0, Arrays.asList(Category.ELECTRONICS, Category.STORAGE));
-        Product product12 = new Product("PRD112", "SanDisk Flash Drive", 20.0, Arrays.asList(Category.ELECTRONICS, Category.STORAGE));
-        Product product13 = new Product("PRD113", "Logitech Webcam", 90.0, Arrays.asList(Category.ELECTRONICS, Category.ACCESSORIES));
-        Product product14 = new Product("PRD114", "Rode Microphone", 110.0, Arrays.asList(Category.AUDIO, Category.ACCESSORIES));
-        Product product15 = new Product("PRD115", "JBL Speakers", 70.0, Arrays.asList(Category.AUDIO));
-        Product product16 = new Product("PRD116", "Xbox Game Controller", 60.0, Arrays.asList(Category.GAMING, Category.ACCESSORIES));
-        Product product17 = new Product("PRD117", "Anker Power Bank", 40.0, Arrays.asList(Category.ELECTRONICS, Category.ACCESSORIES));
-        Product product18 = new Product("PRD118", "Epson Projector", 300.0, Arrays.asList(Category.OFFICE_SUPPLIES, Category.ELECTRONICS));
-        Product product19 = new Product("PRD119", "Canon Scanner", 220.0, Arrays.asList(Category.OFFICE_SUPPLIES, Category.ELECTRONICS));
-        Product product20 = new Product("PRD120", "Wacom Graphic Tablet", 150.0, Arrays.asList(Category.ELECTRONICS, Category.ART_SUPPLIES));
-        Product product21 = new Product("PRD121", "Samsung Smart TV", 400.0, Arrays.asList(Category.ELECTRONICS, Category.HOME_APPLIANCES));
-        Product product22 = new Product("PRD122", "Oculus VR Headset", 350.0, Arrays.asList(Category.GAMING, Category.ELECTRONICS));
-        Product product23 = new Product("PRD123", "DJI Drone", 500.0, Arrays.asList(Category.ELECTRONICS, Category.GADGETS));
-        Product product24 = new Product("PRD124", "Philips Smart Light", 50.0, Arrays.asList(Category.HOME_APPLIANCES, Category.SMART_HOME));
-        Product product25 = new Product("PRD125", "Yale Smart Lock", 120.0, Arrays.asList(Category.SMART_HOME, Category.HOME_SECURITY));
-        Product product26 = new Product("PRD126", "Fitbit Fitness Tracker", 100.0, Arrays.asList(Category.ELECTRONICS, Category.WEARABLES));
-        Product product27 = new Product("PRD127", "Hikvision CCTV Camera", 250.0, Arrays.asList(Category.HOME_SECURITY, Category.ELECTRONICS));
-        Product product28 = new Product("PRD128", "Nest Smart Thermostat", 200.0, Arrays.asList(Category.SMART_HOME, Category.HOME_APPLIANCES));
-        Product product29 = new Product("PRD129", "Anker Wireless Charger", 30.0, Arrays.asList(Category.ELECTRONICS, Category.ACCESSORIES));
-        Product product30 = new Product("PRD130", "Xiaomi Electric Scooter", 800.0, Arrays.asList(Category.ELECTRONICS, Category.TRANSPORT));
+        // Instanciate 20 Physical Products
+        Product product1=new PhysicalProduct("PRD101", "Dell XPS 13", 1200.00, Arrays.asList(Category.ELECTRONICS), 5, "Black");
+        Product product2=new PhysicalProduct("PRD102", "HP Spectre x360", 1100.00, Arrays.asList(Category.ELECTRONICS), 4, "Silver");
+        Product product3=new PhysicalProduct("PRD103", "Lenovo ThinkPad X1 Carbon", 1300.00, Arrays.asList(Category.ELECTRONICS), 5, "Black");
+        Product product4=new PhysicalProduct("PRD104", "MacBook Air M2", 1000.00, Arrays.asList(Category.ELECTRONICS), 4, "Space Gray");
+        Product product5=new PhysicalProduct("PRD105", "Samsung Galaxy S23", 900.00, Arrays.asList(Category.ELECTRONICS), 2, "Phantom Black");
+        Product product6=new PhysicalProduct("PRD106", "iPhone 14 Pro", 1100.00, Arrays.asList(Category.ELECTRONICS), 2, "Deep Purple");
+        Product product7=new PhysicalProduct("PRD107", "Google Pixel 7", 700.00, Arrays.asList(Category.ELECTRONICS), 2, "Obsidian");
+        Product product8=new PhysicalProduct("PRD108", "Sony WH-1000XM5 Headphones", 350.00, Arrays.asList(Category.ELECTRONICS), 1, "Black");
+        Product product9=new PhysicalProduct("PRD109", "Bose QuietComfort 45 Headphones", 300.00, Arrays.asList(Category.ELECTRONICS), 1, "Black");
+        Product product10=new PhysicalProduct("PRD110", "Apple Watch Series 8", 400.00, Arrays.asList(Category.ELECTRONICS), 1, "Midnight");
+        Product product11=new PhysicalProduct("PRD111", "Nike Running Shoes", 100.00, Arrays.asList(Category.SPORTS), 2, "Black/White");
+        Product product12=new PhysicalProduct("PRD112", "Adidas Soccer Ball", 30.00, Arrays.asList(Category.SPORTS), 1, "White/Black");
+        Product product13=new PhysicalProduct("PRD113", "Wilson Tennis Racket", 150.00, Arrays.asList(Category.SPORTS), 1, "Black/Red");
+        Product product14=new PhysicalProduct("PRD114", "Yoga Mat", 25.00, Arrays.asList(Category.SPORTS), 1, "Purple");
+        Product product15=new PhysicalProduct("PRD115", "Dumbbell Set (10kg)", 80.00, Arrays.asList(Category.SPORTS), 2, "Black");
+        Product product16=new PhysicalProduct("PRD116", "Levi's Jeans", 80.00, Arrays.asList(Category.FASHION), 2, "Blue");
+        Product product17=new PhysicalProduct("PRD117", "Calvin Klein T-Shirt", 40.00, Arrays.asList(Category.FASHION), 1, "White");
+        Product product18=new PhysicalProduct("PRD118", "Gucci Handbag", 2000.00, Arrays.asList(Category.FASHION), 1, "Brown");
+        Product product19=new PhysicalProduct("PRD119", "Rolex Watch", 5000.00, Arrays.asList(Category.FASHION), 1, "Gold");
+        Product product20=new PhysicalProduct("PRD120", "Ray-Ban Sunglasses", 150.00, Arrays.asList(Category.FASHION), 1, "Black");
+        // Instaciate 10 DigitalProducts
+        Product product21=new DigitalProduct("PRD107", "Microsoft Office 365", 149.99, Arrays.asList(Category.SOFTWARE), "OFF365-KEY", "https://microsoft.com/download");
+        Product product22=new DigitalProduct("PRD108", "Adobe Creative Cloud", 59.99, Arrays.asList(Category.SOFTWARE), "ADOBE-KEY", "https://adobe.com/download");
+        Product product23=new DigitalProduct("PRD109", "Grammarly Premium", 12.99, Arrays.asList(Category.SOFTWARE), "GRAM-KEY", "https://grammarly.com/download");
+        Product product24=new DigitalProduct("PRD110", "Zoom Pro", 14.99, Arrays.asList(Category.SOFTWARE), "ZOOM-KEY", "https://zoom.us/download");
+        Product product25=new DigitalProduct("PRD111", "NordVPN", 5.99, Arrays.asList(Category.SOFTWARE), "NORD-KEY", "https://nordvpn.com/download");
+        Product product26=new DigitalProduct("PRD112", "Spotify Premium", 9.99, Arrays.asList(Category.SOFTWARE), "SPOT-KEY", "https://spotify.com/download");
+        Product product27=new DigitalProduct("PRD113", "Netflix Premium", 15.99, Arrays.asList(Category.SOFTWARE), "NFLX-KEY", "https://netflix.com/download");
+        Product product28=new DigitalProduct("PRD114", "Kindle Unlimited", 9.99, Arrays.asList(Category.SOFTWARE), "KIND-KEY", "https://amazon.com/kindle");
+        Product product29=new DigitalProduct("PRD115", "Skillshare Premium", 19.99, Arrays.asList(Category.SOFTWARE), "SKIL-KEY", "https://skillshare.com/download");
+        Product product30=new DigitalProduct("PRD116", "Masterclass Subscription", 14.99, Arrays.asList(Category.SOFTWARE), "MSTR-KEY", "https://masterclass.com/download");
+
 
         // Create inventory with user-friendly IDs
         List<Product> products = Arrays.asList(
@@ -82,5 +85,7 @@ public class ProductService {
         System.out.println("Product inventory has been restocked with " + productList.size() + " products.");
 
     }
+    
+    
 
 }

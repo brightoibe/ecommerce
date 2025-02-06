@@ -33,6 +33,7 @@ public enum Category {
     GADGETS,
     SMART_HOME,
     HOME_SECURITY,
-    TRANSPORT
+    TRANSPORT,
+    SOFTWARE
     
 }

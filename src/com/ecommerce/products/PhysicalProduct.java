@@ -5,6 +5,8 @@
  */
 package com.ecommerce.products;
 
+import java.util.List;
+
 /**
  *
  * @author The Bright
@@ -13,6 +15,12 @@ public class PhysicalProduct extends Product {
     
     private int weight;
     private String color;
+    
+    public PhysicalProduct(String productID, String productName,double productPrice, List<Category> categoryList, int weight, String color) {
+        super(productID, productName,productPrice,categoryList);
+        this.weight=weight;
+        this.color=color;
+    }
 
     /**
      * @return the weight
@@ -41,12 +49,4 @@ public class PhysicalProduct extends Product {
     public void setColor(String color) {
         this.color = color;
     }
-    
-    
-    public PhysicalProduct(String productID, String productName,double productPrice, int weight, String color) {
-        super(productID, productName,productPrice);
-        this.weight=weight;
-        this.color=color;
-    }
-    
 }
