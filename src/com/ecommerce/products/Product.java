@@ -19,7 +19,7 @@ import java.util.Set;
  *
  * @author The Bright
  */
-public class Product {
+public abstract class Product {
     
     
     protected String productID;
