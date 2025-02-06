@@ -69,13 +69,13 @@ public class ProductService {
         Product product30=new DigitalProduct("PRD116", "Masterclass Subscription", 14.99, Arrays.asList(Category.SOFTWARE), "MSTR-KEY", "https://masterclass.com/download");
 
 
-        // Create inventory with user-friendly IDs
+        //Add all products to a List
         List<Product> products = Arrays.asList(
                 product1, product2, product3, product4, product5, product6, product7, product8, product9, product10,
                 product11, product12, product13, product14, product15, product16, product17, product18, product19, product20,
                 product21, product22, product23, product24, product25, product26, product27, product28, product29, product30
         );
-
+        //Restock the Inventory of all products to a random stockCount between 1 and 10
         for (Product product : products) {
             product.restockInventory(random.nextInt(10) + 1, LocalDate.now());
 
@@ -84,6 +84,22 @@ public class ProductService {
         productList.addAll(products);
         System.out.println("Product inventory has been restocked with " + productList.size() + " products.");
 
+    }
+    
+    public List<Product> findProducts(Category category){
+        List<Product> searchProdcuts=new ArrayList<Product>();
+        for(Product product: productList){
+            if(product.getProductCategory().contains(category)){
+                searchProdcuts.add(product);
+            }
+        }
+        return searchProdcuts;
+    }
+    
+    public void showProducts(List<Product> productList){
+        for(Product prd: productList){
+            System.out.println(prd);
+        }
     }
     
     

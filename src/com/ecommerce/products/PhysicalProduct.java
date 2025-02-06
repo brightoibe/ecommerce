@@ -5,7 +5,9 @@
  */
 package com.ecommerce.products;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 /**
  *
@@ -48,5 +50,20 @@ public class PhysicalProduct extends Product {
      */
     public void setColor(String color) {
         this.color = color;
+    }
+    
+    @Override
+    public String toString() {
+        // Format price with dollar sign based on locale
+        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.US); // You can use a different locale if needed
+        String formattedPrice = currencyFormat.format(productPrice); // Format the price
+
+       /* If using BigDecimal for price:
+         NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.US); // You can use a different locale if needed
+         String formattedPrice = currencyFormat.format(this.productPrice); // Format the price
+        */
+
+
+        return String.format("%s | %s | %s", productID, productName, formattedPrice, weight, color);
     }
 }
