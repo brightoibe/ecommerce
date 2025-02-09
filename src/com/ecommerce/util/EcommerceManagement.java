@@ -28,32 +28,32 @@ public class EcommerceManagement {
         PaymentService paymentService=PaymentService.getInstance();
 
         //Registering an ADMIN User
-        User adminUser = userService.registerUser("USR101", "johndoe", "123456", "John Doe", LocalDate.now(), "johndoe@yahoo.com", "ADMIN");
-        User customerUser = userService.registerUser("USR102", "davidmike", "67890", "David Mike", LocalDate.now(), "davidmike@yahoo.com", "CUSTOMER");
-        User sellerUser = userService.registerUser("USR103", "donpedro", "14151A*400", "Don Pedro", LocalDate.now(), "brightoibe@yahoo.com", "SELLER");
+        User adminUser = UserService.registerUser("USR101", "johndoe", "123456", "John Doe", LocalDate.now(), "johndoe@yahoo.com", "ADMIN");
+        User customerUser = UserService.registerUser("USR102", "davidmike", "67890", "David Mike", LocalDate.now(), "davidmike@yahoo.com", "CUSTOMER");
+        User sellerUser = UserService.registerUser("USR103", "donpedro", "14151A*400", "Don Pedro", LocalDate.now(), "brightoibe@yahoo.com", "SELLER");
 
         //Customer David Mike login workflow
         User logedInUser;
         try {
-           logedInUser=userService.loginUser("davidmike", "67890");
+           logedInUser=UserService.loginUser("davidmike", "67890");
         } catch (AuthenticationException ex) {
             System.out.println(ex.getMessage());
         }
         
         //Customer David Mike changes his password
-        userService.resetPassword(customerUser,"Pass1word");
+       UserService.resetPassword(customerUser,"Pass1word");
         
         
         //Customer David Mike attempts to login with old password
         try {
-           logedInUser=userService.loginUser("davidmike", "67890");
+           logedInUser=UserService.loginUser("davidmike", "67890");
         } catch (AuthenticationException ex) {
             System.out.println(ex.getMessage());
         }
         
         //Customer David Mike attempts to login with new password
         try {
-           logedInUser=userService.loginUser("davidmike", "Pass1word");
+           logedInUser=UserService.loginUser("davidmike", "Pass1word");
         } catch (AuthenticationException ex) {
             System.out.println(ex.getMessage());
         }
