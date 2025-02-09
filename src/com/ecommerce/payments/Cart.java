@@ -59,14 +59,14 @@ public class Cart {
     /**
      * @return the cartItemList
      */
-    public Set<CartItem> getProductList() {
+    public Set<CartItem> getCartItemSet() {
         return cartItemSet;
     }
 
     /**
      * @param productList the cartItemList to set
      */
-    public void setProductList(Set<CartItem> productSet) {
+    public void setCartItemSet(Set<CartItem> productSet) {
         this.cartItemSet = productSet;
     }
     

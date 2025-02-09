@@ -6,7 +6,9 @@
 package com.ecommerce.util;
 
 import com.ecommerce.payments.Cart;
+import com.ecommerce.payments.Order;
 import com.ecommerce.products.Category;
+import com.ecommerce.products.Discount;
 import com.ecommerce.products.Product;
 import com.ecommerce.services.PaymentService;
 import com.ecommerce.services.ProductService;
@@ -80,7 +82,14 @@ public class EcommerceManagement {
        //cart.removeFromCart(productService.getProduct("PRD111"),2 );
        System.out.println(cart);
        System.out.println("Total value of cart items is "+cart.getTotalPrice());
+
        
+       Order order=paymentService.createOrderFromCart(cart);
+    
+       Discount discount=paymentService.createDiscount("DISCT001", "TECH552",40);
+         order=paymentService.createOrderFromCart(cart, discount);
+         System.out.println("Total with Discount: "+paymentService.getOrderTotalWithDiscount(order, discount));
+         System.out.println("Total without Discount: "+paymentService.getOrderTotalWithoutDiscount(order));
         
         
         

@@ -6,6 +6,8 @@
 package com.ecommerce.services;
 
 import com.ecommerce.payments.Cart;
+import com.ecommerce.payments.Order;
+import com.ecommerce.products.Discount;
 import com.ecommerce.products.Product;
 import com.ecommerce.users.User;
 import java.util.ArrayList;
@@ -47,6 +49,38 @@ public class PaymentService {
             }
         }
         return ct;
+    }
+
+    public Order createOrderFromCart(Cart cart){
+        Order order=null;
+        if(cart!=null){
+            order=new Order("ORD"+cart.getCartID(), cart.getUser(), cart.getCartItemSet());
+        }
+        return order;
+    }
+
+    public Order createOrderFromCart(Cart cart, Discount discount){
+        Order order=null;
+        if(cart!=null){
+            order=new Order("ORD"+cart.getCartID(), cart.getUser(), cart.getCartItemSet());
+            order.setDiscount(discount);
+        }
+        return order;
+    }
+    public double getOrderTotalWithoutDiscount(Order order){
+        double total=0;
+        total=order.getOrderTotalWithoutDiscount();
+        return total;
+    }
+    public double getOrderTotalWithDiscount(Order order, Discount discount){
+        double total=0;
+        total=order.applyDiscountTotal(discount);
+        return total;
+    }
+
+    public Discount createDiscount(String discountID, String discountName, double discountAmount){
+        Discount discount=new Discount(discountID, discountName, discountAmount);
+        return discount;
     }
     
    

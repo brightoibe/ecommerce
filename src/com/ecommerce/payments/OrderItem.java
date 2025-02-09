@@ -19,12 +19,12 @@ public class OrderItem {
     private int quantity;
     private double price;
     
-    public OrderItem(String orderItemId, Order order, Product product, int quantity,double price){
+    public OrderItem(String orderItemId, Order order,Product product, int quantity){
         this.orderItemId=orderItemId;
         this.order=order;
         this.product=product;
         this.quantity=quantity;
-        this.price=price;
+        this.price=product.getProductPrice()*quantity;
     }
 
     /**

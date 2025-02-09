@@ -7,25 +7,28 @@ package com.ecommerce.products;
 
 import java.time.LocalDate;
 
-/**
- *
- * @author The Bright
- */
-public class Discount {
+
+    /**
+     *
+     * @author The Bright
+     */
+    public class Discount {
+        
+        private String discountId;
+        private String discountName;
+        private double percentage;
+        
+        public Discount(String discountId, String discountName, double percentage){
+            this.discountId=discountId;
+            this.discountName=discountName;
+            this.percentage=percentage;
+        }
+
+     
+        
     
-    private String discountId;
-    private String discountName;
-    private double percentage;
-    private LocalDate startDate;
-    private LocalDate endDate;
     
-    public Discount(String discountId, String discountName, double percentage, LocalDate startDate, LocalDate endDate){
-        this.discountId=discountId;
-        this.discountName=discountName;
-        this.percentage=percentage;
-        this.startDate=startDate;
-        this.endDate=endDate;
-    }
+   
 
     /**
      * @return the discountId
@@ -69,32 +72,5 @@ public class Discount {
         this.percentage = percentage;
     }
 
-    /**
-     * @return the startDate
-     */
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    /**
-     * @param startDate the startDate to set
-     */
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    /**
-     * @return the endDate
-     */
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    /**
-     * @param endDate the endDate to set
-     */
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
     
 }
