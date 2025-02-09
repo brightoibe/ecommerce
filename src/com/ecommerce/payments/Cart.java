@@ -8,7 +8,9 @@ package com.ecommerce.payments;
 import com.ecommerce.products.Product;
 import com.ecommerce.users.User;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -18,12 +20,12 @@ public class Cart {
     
     private String cartID;
     private User user;
-    private List<CartItem> cartItemList;
+    private Set<CartItem> cartItemSet; 
     
     public Cart(String cartID, User user){
         this.cartID=cartID;
         this.user=user;
-        cartItemList=new ArrayList<CartItem>();
+        cartItemSet = new HashSet<CartItem>();
     }
 
     /**
@@ -57,61 +59,109 @@ public class Cart {
     /**
      * @return the cartItemList
      */
-    public List<CartItem> getProductList() {
-        return cartItemList;
+    public Set<CartItem> getProductList() {
+        return cartItemSet;
     }
 
     /**
      * @param productList the cartItemList to set
      */
-    public void setProductList(List<CartItem> productList) {
-        this.cartItemList = productList;
+    public void setProductList(Set<CartItem> productSet) {
+        this.cartItemSet = productSet;
     }
     
      public void addToCart(Product product, int quantity){
-        CartItem cartItem=findOrCreateCartItem(product, quantity);
-        cartItem.setQuantity(cartItem.getQuantity()+quantity);
-        System.out.println("Cart Item added: "+cartItem);
+            CartItem cartItem=getCartItem(product);
+            if(cartItem==null){
+                cartItem=createCartItem(product, quantity);
+                cartItemSet.add(cartItem);
+            }else{
+                cartItem.setQuantity(cartItem.getQuantity()+quantity);
+            }
+
+            System.out.println("Cart Item added: "+cartItem);
      }
      
      public void removeFromCart(Product product, int quantity){
          CartItem cartItem=findOrCreateCartItem(product, quantity);
-         if(cartItem.getQuantity()>0 && cartItem.getQuantity()>quantity){
+         if(cartItem.getQuantity()>0 && cartItem.getQuantity()>=quantity){
              cartItem.setQuantity(cartItem.getQuantity()-quantity);
          }else{
              return;
          }
+            System.out.println("Cart Item removed: "+cartItem);
          
      }
      
      private CartItem createCartItem(Product product, int quantity){
-         CartItem item=new CartItem("CRTITM"+this.getCartID(),product, quantity);
-         cartItemList.add(item);
+         CartItem item=new CartItem("CRTITM"+product.getProductID(),product, quantity);
+         cartItemSet.add(item);
          return item;
          
      }
-     public CartItem findOrCreateCartItem(Product product, int quantity){
+
+public CartItem getCartItem(Product product){
          CartItem cartItem=null;
-         for(CartItem item: cartItemList){
-             if(item.getProduct().equals(product)){
+         for(CartItem item: cartItemSet){
+             if(item.getProduct().getProductID().equalsIgnoreCase(product.getProductID())){
                  cartItem=item;
              }
          }
-         if(cartItem==null){
-             cartItem=createCartItem(product, quantity);
-         }
+         return cartItem;
+     }
+
+
+     public CartItem findOrCreateCartItem(Product product, int quantity){
+         //check if cart item already exists for the product
+         //if not, create a new cart item and add it to the cartItemList
+         //if yes, increment the quantity of the existing cart item by the quantity parameter
+         //return the existing cart item or newly created cart item
+         //return the cart item with updated quantity or newly created cart item if it doesn't exist in the cartItemList
+         //Note: the productID is used to find the cart item in the cartItemList. The product ID is case insensitive.
+         
+         //find or create cart item based on product ID and quantity
+
+         CartItem cartItem=null;
+            for(CartItem item: cartItemSet){
+                if(item.getProduct().getProductID().equalsIgnoreCase(product.getProductID())){
+                    cartItem=item;
+                }
+            }
+            if(cartItem==null){
+                cartItem=createCartItem(product, quantity);
+            }
+
          return cartItem;
      }
      
      public double getTotalPrice(){
          double totalPrice=0;
          double productTotalPrice=0;
-         for(CartItem item: cartItemList){
+         for(CartItem item: cartItemSet){
              productTotalPrice=item.getProduct().getProductPrice()*item.getQuantity();
              totalPrice+=productTotalPrice;
          }
+         //format totalPrice to 2 decimal places double
+         totalPrice = Double.parseDouble(String.format("%.2f", totalPrice));
+         
          return totalPrice;
      }
+
+
+          @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Cart{");
+        sb.append("cartID='").append(cartID).append('\'');
+        sb.append(", user=").append(user.getUserName());
+        sb.append(", cartItems=\n");
+        sb.append("Cart Items:\n");
+        for (CartItem item : cartItemSet) {
+            sb.append(item.toString()).append("\n");
+        }
+        sb.append("}");
+        return sb.toString();
+    }
      
     
     

@@ -73,6 +73,12 @@ public class EcommerceManagement {
        cart.addToCart(productService.getProduct("PRD111"), 5);
        cart.addToCart(productService.getProduct("PRD117"), 1);
        cart.addToCart(productService.getProduct("PRD107"), 3);
+      // System.out.println(cart);
+       //remove product from cart
+       cart.removeFromCart(productService.getProduct("PRD111"),2 );
+      // System.out.println(cart);
+       //cart.removeFromCart(productService.getProduct("PRD111"),2 );
+       System.out.println(cart);
        System.out.println("Total value of cart items is "+cart.getTotalPrice());
        
         

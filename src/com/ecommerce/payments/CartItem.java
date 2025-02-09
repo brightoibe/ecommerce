@@ -67,7 +67,28 @@ public class CartItem {
 
     @Override
     public String toString() {
-        return product.getProductName() + ":" + product.getProductPrice() + ":" + quantity;
+        // String format to append dollar sign and format price to 2 decimal places
+        String formattedPrice = String.format("$%.2f", product.getProductPrice());
+        String formattedTotalPrice = String.format("$%.2f", product.getProductPrice() * quantity);
+
+        return "CartItem{" + "ProductID=" + product.getProductID() + " product=" + product.getProductName() + ", price =" + formattedPrice + ", quantity="
+                + quantity + " Total price: " + formattedTotalPrice + " }";
     }
 
+        @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        CartItem cartItem = (CartItem) obj;
+        return product.getProductID().equalsIgnoreCase(cartItem.getProduct().getProductID());
+    }
+    
+    @Override
+    public int hashCode() {
+        return product.getProductID().toLowerCase().hashCode();
+    }
 }
