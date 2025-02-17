@@ -12,9 +12,19 @@ import java.time.LocalDate;
  * @author The Bright
  */
 public class Customer extends User {
+
+    private int rewardPoints;
     
     public Customer(String userID, String userName, String password_hash, String fullname, LocalDate dateOfBirth, String email) {
         super(userID, userName, password_hash, fullname, dateOfBirth, email);
+    }
+    
+    public int getRewardPoints() {
+        return rewardPoints;
+    }
+    
+    public void setRewardPoints(int rewardPoints) {
+        this.rewardPoints = rewardPoints;
     }
     
 }

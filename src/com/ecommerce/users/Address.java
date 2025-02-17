@@ -113,6 +113,23 @@ public class Address {
     public int hashCode() {
         return Objects.hash(addressID);
     }
+    public String showAddressDetails() {
+        return "Address ID: " + addressID + "\n" +
+                "User: " + user + "\n" +
+                "Address Type: " + addressType + "\n" +
+                "Country: " + country + "\n" +
+                "City: " + city + "\n" +
+                "Street: " + street + "\n";
+    }   
+
+    public String toString() {
+        return "Address ID: " + addressID + "\n" +
+                "User: " + user + "\n" +
+                "Address Type: " + addressType + "\n" +
+                "Country: " + country + "\n" +
+                "City: " + city + "\n" +
+                "Street: " + street + "\n";
+    }
     
     private String addressID;
     private User user;
