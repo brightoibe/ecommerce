@@ -162,6 +162,16 @@ public CartItem getCartItem(Product product){
         sb.append("}");
         return sb.toString();
     }
+
+    public double getQuantity(Product product){
+        double quantity=0;
+        for(CartItem item: cartItemSet){
+            if(item.getProduct().getProductID().equalsIgnoreCase(product.getProductID())){
+                quantity=item.getQuantity();
+            }
+        }
+        return quantity;
+    }
      
     
     
