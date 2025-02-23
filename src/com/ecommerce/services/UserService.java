@@ -6,7 +6,7 @@
 package com.ecommerce.services;
 
 import com.ecommerce.users.Admin;
-import com.ecommerce.users.AuthenticationException;
+import com.ecommerce.exceptions.AuthenticationException;
 import com.ecommerce.users.Customer;
 import com.ecommerce.users.Role;
 import com.ecommerce.users.Sellers;

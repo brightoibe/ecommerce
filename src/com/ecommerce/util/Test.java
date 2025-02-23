@@ -8,14 +8,7 @@ package com.ecommerce.util;
 import com.ecommerce.products.Category;
 import com.ecommerce.products.Product;
 import com.ecommerce.services.ProductService;
-import com.ecommerce.services.UserService;
-import static com.ecommerce.services.UserService.checkPassword;
-import com.ecommerce.users.AuthenticationException;
-import com.ecommerce.users.User;
-import java.time.LocalDate;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
